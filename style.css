@@ -1,0 +1,218 @@
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0b1020;
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(135deg, #151d3b, #24205a);
+    color: #fff;
+    padding: 30px 8%;
+    border-bottom: 1px solid #343b70;
+}
+
+header h1{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #c7d2fe;
+    margin-bottom: 4px;
+}
+header p{
+    color: #a5b4fc;
+    font-size: 0.95rem;
+}
+/* Conteúdo principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+/* Apresentação */
+.intro {
+    margin-bottom: 28px;
+}
+
+.intro h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: #a5b4fc;
+}
+
+.intro p {
+    max-width: 850px;
+    color: #b8c2d9;
+}
+
+/* Grade dos quatro cartões */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Cartões clicáveis */
+.card {
+    display: block;
+    padding: 24px;
+    background: linear-gradient(145deg, #141b30, #101629);
+    color: #e2e8f0;
+    text-decoration: none;
+    border: 1px solid #293455;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    transition: 
+        transform 0.25s, 
+        box-shadow 0.25s, 
+        border-color 0.25s;
+}
+
+/* Título dos cartões */
+.card h2,
+.card h3 {
+    color: #a5b4fc;
+    margin-bottom: 12px;
+}
+
+/* Efeito ao passar o mouse */
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #818cf8;
+    box-shadow: 0 8px 26px rgba(99, 102, 241, 0.16);
+}
+
+/* Indicação visual ao navegar pelo teclado */
+.card:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 4px;
+}
+
+/* Layout para telas menores */
+@media (max-width: 768px) {
+    header {
+        padding: 24px 16px;
+    }
+
+    main {
+        padding: 24px 16px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .materias-grid{
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Link para voltar à página inicial */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #a5b4fc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.back-link:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
+}
+.back-link:focus-visible {
+    outline: 2px solid #5265e8;
+    outline-offset: 4px;
+}
+/*Grade das Matérias*/
+.materias-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+/* Fundo tecnológico com luzes ambientes */
+body {
+    position: relative;
+    isolation: isolate;
+    background-color: #0b1020;
+}
+
+/* Camada de luzes animadas */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(56, 85, 220, 0.20),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 35%,
+            rgba(124, 58, 237, 0.16),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 50% 90%,
+            rgba(14, 116, 200, 0.12),
+            transparent 42%
+        );
+
+    background-size: 140% 140%;
+    animation: ambientGlow 18s ease-in-out infinite alternate;
+}
+
+/* Movimento suave das luzes */
+@keyframes ambientGlow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 20% 100%;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
+}
+
+#tarefas-lista li{
+    cursor: pointer;
+    padding: 10px 12px;
+    margin-top: 8px;
+    border: 1px solid #293455;
+    border-radius: 8px;
+    transition: 
+        background-color 0.2s, 
+        color 0.2s;
+}
+
+#tarefas-lista li.concluida{
+    color: #94a3b8;
+    text-decoration: line-through;
+    background-color: rgba(99, 102, 241, 0.12);
+}

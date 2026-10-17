@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tarefas | StudyVerse</title>
+</head>
+<body>
+    <header>
+        <h1>STUDYVERSE</h1>
+        <p>Organização, tarefas e desenvolvimento</p>
+    </header>
+    <main>
+    <a href="index.html" class="back-link">Voltar ao Início</a>
+    <section class="card" id="tarefas">
+        <h2>Minhas Tarefas</h2>
+
+        <p>
+            Organize suas tarefas, acompanhe os prazos e consulte
+            o status de conclusão de cada atividade em um só lugar.
+        </p>
+    </section>
+<section class="card" id="formulario-tarefa">
+    <h2>Adicionar nova tarefa</h2>
+    <form id="form-tarefa">
+        <label for="nome-tarefa">Nome da tarefa</label>
+        <input
+            type="text"
+            id="nome-tarefa"
+            placeholder="Ex.: Estudar lógica programação"
+            required
+        >
+        <button type="submit">Adicionar tarefa</button>
+    </form>
+</section>
+
+<section class="card" id="lista-tarefas">
+    <h2>Minhas atividades</h2>
+    <ul id="tarefas-lista"></ul>
+</section>
+</main>
+    <script src="script.js"></script>
+</body>
+</html>
