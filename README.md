@@ -36,7 +36,7 @@ A interface segue uma proposta minimalista e futurista, com tema escuro, detalhe
 - [x] Desenvolver o layout do dashboard
 - [x] Implementar o cadastro de tarefas
 - [x] Permitir marcar tarefas como concluídas
-- [ ] Salvar tarefas com LocalStorage
+- [x] Salvar tarefas com LocalStorage
 - [ ] Tornar a agenda interativa
 - [ ] Implementar o acompanhamento do progresso
 - [ ] Desenvolver backend e banco de dados
