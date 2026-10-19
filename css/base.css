@@ -1,0 +1,70 @@
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0b1020;
+    color: #e2e8f0;
+    line-height: 1.6;
+
+    /* Fundo tecnológico */
+    position: relative;
+    isolation: isolate;
+}
+
+/* Camada de luzes animadas */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(56, 85, 220, 0.20),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 35%,
+            rgba(124, 58, 237, 0.16),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 50% 90%,
+            rgba(14, 116, 200, 0.12),
+            transparent 42%
+        );
+
+    background-size: 140% 140%;
+    animation: ambientGlow 18s ease-in-out infinite alternate;
+}
+
+/* Movimento suave das luzes */
+@keyframes ambientGlow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 20% 100%;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
+}

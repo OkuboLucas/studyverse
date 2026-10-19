@@ -1,0 +1,146 @@
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(135deg, #151d3b, #24205a);
+    color: #fff;
+    padding: 30px 8%;
+    border-bottom: 1px solid #343b70;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+    margin-bottom: 4px;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+/* Conteúdo principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+/* Apresentação */
+.intro {
+    margin-bottom: 28px;
+}
+
+.intro h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: #a5b4fc;
+}
+
+.intro p {
+    max-width: 850px;
+    color: #b8c2d9;
+}
+
+/* Grade dos cartões da página inicial */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Cartões clicáveis */
+.card {
+    display: block;
+    padding: 24px;
+    background: linear-gradient(145deg, #141b30, #101629);
+    color: #e2e8f0;
+    text-decoration: none;
+    border: 1px solid #293455;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        border-color 0.25s;
+}
+
+/* Títulos dos cartões */
+.card h2,
+.card h3 {
+    color: #a5b4fc;
+    margin-bottom: 12px;
+}
+
+/* Efeito ao passar o mouse */
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #818cf8;
+    box-shadow: 0 8px 26px rgba(99, 102, 241, 0.16);
+}
+
+/* Ícones dos cartões */
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+/* Acessibilidade por teclado */
+.card:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 4px;
+}
+
+/* Link para voltar à página inicial */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #a5b4fc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
+}
+
+.back-link:focus-visible {
+    outline: 2px solid #5265e8;
+    outline-offset: 4px;
+}
+
+/* Grade das matérias */
+.materias-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+/* Layout para telas menores */
+@media (max-width: 768px) {
+    header {
+        padding: 24px 16px;
+    }
+
+    main {
+        padding: 24px 16px;
+    }
+
+    .dashboard,
+    .materias-grid {
+        grid-template-columns: 1fr;
+    }
+}
