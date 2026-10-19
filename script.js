@@ -10,8 +10,22 @@ if (tarefasSalvas) {
 // Captura os elementos do HTML
 const formulario = document.getElementById("form-tarefa");
 const campoTarefa = document.getElementById("nome-tarefa");
+const campoPrioridade = document.getElementById("prioridade-tarefa");
+const campoPrazo = document.getElementById("prazo-tarefa");
 const listaTarefas = document.getElementById("tarefas-lista");
+function atualizarResumo(){
+    const total = tarefas.length;
 
+    const concluidas = tarefas.filter(function(tarefa){
+        return tarefa.concluida;
+    }).length;
+    
+    const pendentes = total - concluidas;
+
+    document.getElementById("total-tarefas").textContent = total;
+    document.getElementById("tarefas-concluidas").textContent = concluidas;
+    document.getElementById("tarefas-pendentes").textContent = pendentes;
+}
 
 // Cria visualmente uma tarefa
 function criarItemTarefa(tarefa) {
@@ -22,6 +36,28 @@ function criarItemTarefa(tarefa) {
     const nome = document.createElement("span");
     nome.textContent = tarefa.nome;
 
+    const prioridade = document.createElement("small");
+
+    const prioridadeAtual = tarefa.prioridade || "media";
+
+    prioridade.textContent =
+        "Prioridade: " + prioridadeAtual;
+
+    prioridade.classList.add(
+        "prioridade",
+        prioridadeAtual
+    );
+    const prazo = document.createElement("small");
+
+    if(tarefa.prazo){
+        const data = tarefa.prazo.split("-");
+
+        prazo.textContent = 
+        "Prazo: " + data[2] + "/" + data[1] + "/" + data[0]
+     } else {
+        prazo.textContent = "Sem prazo definido"
+     }
+     prazo.classList.add("prazo-tarefa");
     const botaoExcluir = document.createElement("button");
     botaoExcluir.textContent = "Excluir";
 
@@ -36,9 +72,13 @@ function criarItemTarefa(tarefa) {
         );
         
         item.remove();
+
+        atualizarResumo();
     });
 
     item.appendChild(nome);
+    item.appendChild(prioridade);
+    item.appendChild(prazo);
     item.appendChild(botaoExcluir);
 
     // Verifica se a tarefa já está concluída
@@ -61,6 +101,7 @@ function criarItemTarefa(tarefa) {
             "tarefas",
             JSON.stringify(tarefas)
         );
+        atualizarResumo();
     });
 
     return item;
@@ -78,6 +119,8 @@ function mostrarTarefas() {
 
         listaTarefas.appendChild(item);
     });
+    
+    atualizarResumo();
 }
 
 
@@ -102,7 +145,9 @@ formulario.addEventListener("submit", function(evento) {
     // Cria o objeto da nova tarefa
     const novaTarefa = {
         nome: nomeTarefa,
-        concluida: false
+        concluida: false,
+        prioridade: campoPrioridade.value,
+        prazo: campoPrazo.value
     };
 
     // Adiciona a nova tarefa ao array
@@ -119,10 +164,12 @@ formulario.addEventListener("submit", function(evento) {
 
     // Adiciona a tarefa à lista
     listaTarefas.appendChild(item);
+    atualizarResumo();
 
     // Limpa o campo
     campoTarefa.value = "";
-
+    // Limpa o campo após cadastrar a tarefa
+    campoPrazo.value = "";
     // Coloca o cursor novamente no campo
     campoTarefa.focus();
 });

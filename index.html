@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <title>STUDYVERSE</title>
 </head>
 <body>
@@ -40,6 +41,9 @@
                 </p>
             </a>
             <a class="card" id="agenda" href="agenda.html">
+                <div class="card-icon">
+                    <i data-lucide="calendar-days"></i>
+                </div>
                 <h3>Agenda</h3>
                 <p>
                     Aqui você encontra a sua agenda organizada de forma
@@ -51,6 +55,9 @@
             </a>
 
             <a class="card" id="tarefas" href="tarefas.html">
+                <div class="card-icon">
+                    <i data-lucide="clipboard-list"></i>
+                </div>
                 <h3>Tarefas</h3>
                 <p>
                     Aqui estarão organizadas todas as suas tarefas,
@@ -61,6 +68,9 @@
             </a>
 
             <a class="card" id="progresso" href="progresso.html">
+                <div class="card-icon">
+                    <i data-lucide="battery-charging"></i>
+                </div>
                 <h3>Progresso</h3>
                 <p>
                     Aqui você poderá acompanhar seu progresso de forma
@@ -72,6 +82,8 @@
         </nav>
 
     </main>
-
+<script>
+    lucide.createIcons();
+</script>
 </body>
 </html>

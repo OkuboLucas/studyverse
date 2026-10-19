@@ -33,6 +33,21 @@
             required
         >
         </div>
+        <div class="input-container">
+            <label for="prioridade-tarefa">Prioridade</label>
+            <select id="prioridade-tarefa">
+                <option value="baixa">Baixa</option>
+                <option value="media">Média</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <label for="prazo-tarefa">Prazo</label>
+            <input 
+                type="date"
+                id="prazo-tarefa"
+            >
+        </div>
         <button type="submit">
             <span>Adicionar Tarefa</span>
             <span class="btn-glow"></span>
@@ -42,6 +57,24 @@
 
 <section class="card" id="lista-tarefas">
     <h2>Minhas atividades</h2>
+    <div class="tarefas-resumo">
+
+        <div class="resumo-item">
+            <span id="total-tarefas">0</span>
+            <small>Total</small>
+        </div>
+
+        <div class="resumo-item">
+            <span id="tarefas-concluidas">0</span>
+            <small>Concluídas</small>
+        </div>
+
+        <div class="resumo-item">
+            <span id="tarefas-pendentes">0</span>
+            <small>Pendentes</small>
+        </div>
+    </div>
+
     <ul id="tarefas-lista"></ul>
 </section>
 </main>
