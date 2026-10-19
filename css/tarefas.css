@@ -261,3 +261,56 @@
     border: 1px solid rgba(59, 130, 246, 0.2);
     white-space: nowrap;
 }
+
+/* Destaque para tarefas atrasadas */
+#tarefas-lista li.atrasada {
+    border-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.10);
+}
+
+#tarefas-lista li.atrasada .prazo-tarefa {
+    color: #fca5a5;
+    background-color: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Tarefa atrasada: destaque no texto do prazo */
+#tarefas-lista li.atrasada .prazo-tarefa::after {
+    content: " — ATRASADA";
+    font-weight: 700;
+}
+
+/* Filtros da lista de tarefas */
+.filtros-tarefas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.filtro-tarefa {
+    padding: 8px 16px;
+    border: 1px solid #293455;
+    border-radius: 8px;
+    background: rgba(20, 27, 48, 0.8);
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.filtro-tarefa:hover {
+    border-color: #818cf8;
+    color: #c4b5fd;
+}
+
+.filtro-tarefa.ativo {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #818cf8;
+    color: #c4b5fd;
+}
+
+.filtro-tarefa:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 3px;
+}

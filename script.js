@@ -8,11 +8,28 @@ if (tarefasSalvas) {
 
 
 // Captura os elementos do HTML
+let filtroAtual = "todas";
+
+const botoesFiltro = document.querySelectorAll(".filtro-tarefa");
 const formulario = document.getElementById("form-tarefa");
 const campoTarefa = document.getElementById("nome-tarefa");
 const campoPrioridade = document.getElementById("prioridade-tarefa");
 const campoPrazo = document.getElementById("prazo-tarefa");
 const listaTarefas = document.getElementById("tarefas-lista");
+function tarefaAtrasada(tarefa){
+    if(!tarefa.prazo || tarefa.concluida){
+        return false
+    }
+
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoje.getDate()).padStart(2, "0");
+
+    const dataHoje = `${ano}-${mes}-${dia}`;
+    return tarefa.prazo < dataHoje;
+}
+
 function atualizarResumo(){
     const total = tarefas.length;
 
@@ -71,9 +88,7 @@ function criarItemTarefa(tarefa) {
             JSON.stringify(tarefas)
         );
         
-        item.remove();
-
-        atualizarResumo();
+        mostrarTarefas();
     });
 
     item.appendChild(nome);
@@ -82,46 +97,76 @@ function criarItemTarefa(tarefa) {
     item.appendChild(botaoExcluir);
 
     // Verifica se a tarefa já está concluída
+    
+    // Verifica se a tarefa já está concluída
     if (tarefa.concluida) {
         item.classList.add("concluida");
     }
 
+    // Destaca tarefas com prazo vencido
+    if (tarefaAtrasada(tarefa)) {
+        item.classList.add("atrasada");
+    }
+
+
     // Permite marcar e desmarcar a tarefa
-    item.addEventListener("click", function() {
+    
+item.addEventListener("click", function() {
+    tarefa.concluida = !tarefa.concluida;
 
-        tarefa.concluida = !tarefa.concluida;
+    localStorage.setItem(
+        "tarefas",
+        JSON.stringify(tarefas)
+    );
 
-        item.classList.toggle(
-            "concluida",
-            tarefa.concluida
-        );
+    mostrarTarefas();
+});
 
-        // Atualiza o localStorage
-        localStorage.setItem(
-            "tarefas",
-            JSON.stringify(tarefas)
-        );
-        atualizarResumo();
-    });
 
     return item;
 }
 
 
 // Mostra as tarefas salvas quando a página é carregada
-function mostrarTarefas() {
 
+function mostrarTarefas() {
     listaTarefas.innerHTML = "";
 
-    tarefas.forEach(function(tarefa) {
+    const tarefasFiltradas = tarefas.filter(function(tarefa) {
+        if (filtroAtual === "pendentes") {
+            return !tarefa.concluida;
+        }
 
+        if (filtroAtual === "concluidas") {
+            return tarefa.concluida;
+        }
+
+        return true;
+    });
+
+    tarefasFiltradas.forEach(function(tarefa) {
         const item = criarItemTarefa(tarefa);
-
         listaTarefas.appendChild(item);
     });
-    
+
     atualizarResumo();
 }
+
+botoesFiltro.forEach(function(botao) {
+    botao.addEventListener("click", function() {
+        filtroAtual = botao.dataset.filtro;
+
+        botoesFiltro.forEach(function(outroBotao) {
+            const selecionado = outroBotao === botao;
+
+            outroBotao.classList.toggle("ativo", selecionado);
+            outroBotao.setAttribute("aria-pressed", selecionado);
+        });
+
+        mostrarTarefas();
+    });
+});
+
 
 
 // Mostra as tarefas assim que a página carrega
@@ -160,11 +205,7 @@ formulario.addEventListener("submit", function(evento) {
     );
 
     // Cria o elemento visual da nova tarefa
-    const item = criarItemTarefa(novaTarefa);
-
-    // Adiciona a tarefa à lista
-    listaTarefas.appendChild(item);
-    atualizarResumo();
+    mostrarTarefas();;
 
     // Limpa o campo
     campoTarefa.value = "";
